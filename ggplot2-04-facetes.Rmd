@@ -65,22 +65,43 @@ UÅ¾duotys: facetÄ—s
 1. Kas nutinka, jei facetes kuriame pagal tolydÅ³jÄ¯ kintamÄ…jÄ¯?
 
 ```{r}
+ ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_wrap(~ cty, nrow = 2)
 
+Susidaro daug faceèiø.
+```
 ```
 
 2. KÄ… rodo tuÅ¡ti langeliai Ä¯vykdÅ¾ius funkcijÄ… `facet_grid(drv ~ cyl)`? Kaip jie susijÄ™ su Å¡iuo grafiku: 
 ```{r}
+
+     
+  Tuğti langeliai rodo,kad nëra tokius parametrus atitinkanèiø duomenø.
+```
+ 
+```
+```{r}
 ggplot(data = mpg) + 
-     geom_point(mapping = aes(x = drv, y = cyl)) 
+     geom_point(mapping = aes(x = drv, y = cyl)) +
+     facet_grid(drv ~ cyl) 
+```
+
 ```
 
 3. KÄ… daro Å¾emiau pateiktas kodas? KÄ… reiÅ¡kia taÅ¡kas (`.`)?
 
+
+```{r}
 ```{r}
 ggplot(data = mpg) + 
     geom_point(mapping = aes(x = displ, y = hwy)) + 
     facet_grid(drv ~ .) 
 
+Tağkas formulëje nurodo, kad pagal nurodytà matmená neturi bûti skirstymo facetëmis eiluèiø atşvilgiu, ğiuo atveju facetëmis nesirstomas matmuo drv. Antrajame grafike, pagal stulpelius neskirstomas facetëmis matmuo cyl.
+```
+```{r}
+?mpg
 ```
 
 ```{r}
@@ -93,8 +114,7 @@ ggplot(data = mpg) +
     a. Kokie privalumai naudoti facetes vs. iÅ¡dÄ—stymÄ… spalvomis? 
     b. Kokie trÅ«kumai?
     c. Kaip balansas tarp privalumÅ³ ir trÅ«kumÅ³ pakistÅ³, jei turÄ—tumÄ—te Å¾ymiai daugiau duomenÅ³?
-
-
+Facetes patogu naudoti, kai norima iğdëstyti kintamojo duomenis ir duomenø kiekis nëra didelis. Duomenys yra aiğkiai sugrupuojami, nesusimaiğo tarpusavyje viename grafike. Esant dideliam duomenø kiekiui susidaro daug faceèiø uşimanèiø arba daug vietos, arba duomenys kiekvienoje jø yra suspausti ir juos nepatogu ávertinti, todël tokiu atveju facetës nëra labai tinkamos.
 
 ```{r}
 ggplot(data = mpg) + 
@@ -105,17 +125,19 @@ ggplot(data = mpg) +
 Spalvomis iÅ¡dÄ—stykite klasiÅ³ pavadinimus
 ```{r}
 ggplot(data = mpg) + 
-    geom_point(mapping = aes(x = displ, y = hwy, color =  )) + 
-    facet_wrap(~ class, nrow = 2) 
+    geom_point(mapping = aes(x = displ, y = hwy, color = class))  
+```
+```{r}
+?facet_wrap
 ```
 
 
 5. Perskaitykite funkcijos apraÅ¡ymÄ…: `?facet_wrap`.
-    a. KokiÄ… funkcijÄ… atlieka `nrow`? 
-    b. KokiÄ… funkcijÄ… atlieka `ncol`? 
-    c. Kurios kitos funkcijos kontroliuoja faceÄiÅ³ iÅ¡dÄ—stymÄ…? 
-    d. KodÄ—l funkcija `facet_grid()` neturi parametrÅ³ `nrow` ir `ncol`?
+    a. KokiÄ… funkcijÄ… atlieka `nrow`? faceèiø eiluèiø skaièius
+    b. KokiÄ… funkcijÄ… atlieka `ncol`? faceèiø stulpeliø skaièius
+    c. Kurios kitos funkcijos kontroliuoja faceÄiÅ³ iÅ¡dÄ—stymÄ…? dir 
+    d. KodÄ—l funkcija `facet_grid()` neturi parametrÅ³ `nrow` ir `ncol`? Todël kad facet_grid duomenis eiluèiø ar stulpeliø atşvilgiu iğdësto pagal tai, kiek duomenø turi pasirinktas matmuo, o ne pagal laisvai pasirinktà eiluèiø ar stulpeliø skaièiø.
 
 
 
-6. Kokiu atveju naudodami `facet_grid()` kintamÄ…jÄ¯ su didesniu kiekiu skirtingÅ³ reikÅ¡miÅ³ (faktoriaus lygiÅ³) turÄ—tumÄ—te atvaizduoti faceÄiÅ³ stulpeliuose? KodÄ—l?
+6. Kokiu atveju naudodami `facet_grid()` kintamÄ…jÄ¯ su didesniu kiekiu skirtingÅ³ reikÅ¡miÅ³ (faktoriaus lygiÅ³) turÄ—tumÄ—te atvaizduoti faceÄiÅ³ stulpeliuose? KodÄ—l? Duomenis Atvaizduoti faceèiø stulpeliuose reiktø tuo atveju, kai matmuo atidëtas Y ağyje turi platesnio diapazono duomenø pasiskirstymà lyginant su X ağyje atidëtais duomenimis. 

@@ -37,6 +37,15 @@ ggplot2::mpg
 ```{r}
 mpg
 ```
+```{r}
+dim(mpg)
+```
+
+```{r}
+?mpg
+```
+
+```
 
 Mus dominantys kintamieji
 ----------------------------------------------------------------------------- 
@@ -56,7 +65,17 @@ Pirmasis mūsų grafikas: sklaidos diagrama
 ```{r}
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy))
+```{r}
+library(ggplot2)
+ggplot(mpg, aes(x = hwy, y = cyl)) +
+      geom_point()
+
 ```
+
+```{r}
+ggplot(data = mpg)
+```
+
 
 
 Užduotys 1

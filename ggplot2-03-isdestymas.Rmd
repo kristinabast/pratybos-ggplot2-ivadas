@@ -5,6 +5,9 @@ output: html_notebook
 editor_options: 
   chunk_output_type: inline
 ---
+```{r}
+demo(colors)
+```
 
 
 ```{r setup}
@@ -32,6 +35,15 @@ Klases išdėstome dydžių skalėje
 ```{r}
 ggplot(data = mpg) + 
      geom_point(mapping = aes(x = displ, y = hwy, size = class)) 
+```
+
+```{r}
+demo(colors)
+
+```
+
+```{r}
+?mpg
 ```
 
 Kitos skalės išdėstymui
@@ -70,35 +82,53 @@ Užduotys: estetinis išdėstymas
 
 ```{r}
 ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy, color = "blue"))
+  geom_point(mapping = aes(x = displ, y = hwy), color = "blue")
 ```
 
 2. Kurie lentelės `mpg` kintamieji yra kategoriniai? Kurie – tolydieji? (Užuomina: `?mpg`). Kaip tai pamatyti atspausdinus `mpg`?
 
 ```{r}
-
+?mpg
 ```
 
 3. Pasirinkite tolydųjį kintamąjį ir atidėkite jo reikšmes šiose skalėse: `color`, `size`, `shape`. 
 
 ```{r}
-
+ ggplot(data = mpg) +
+   geom_point(mapping = aes(x = displ, y = hwy, color = hwy )) 
+ ggplot(data = mpg) +
+   geom_point(mapping = aes(x = displ, y = hwy, size = hwy )) 
+  ggplot(data = mpg) +
+   geom_point(mapping = aes(x = displ, y = hwy, shape = hwy )) 
 ```
 
 4. Kuo šių estetikos elementų (`color`, `size`, `shape`) išdėstymas skiriasi, jei atidedame *kategorinį* vs. *tolydųjį* kintamąjį? 
 
 
 ```{r}
-
+ ggplot(data = mpg) +
+   geom_point(mapping = aes(x = displ, y = hwy, color = class)) 
+ ggplot(data = mpg) +
+   geom_point(mapping = aes(x = displ, y = hwy, size = class)) 
+  ggplot(data = mpg) +
+   geom_point(mapping = aes(x = displ, y = hwy, shape = class)) 
 ```
 ```{r}
-
+ ggplot(data = mpg) +
+   geom_point(mapping = aes(x = displ, y = hwy, color = cty)) 
+ ggplot(data = mpg) +
+   geom_point(mapping = aes(x = displ, y = hwy, size = cty)) 
+  ggplot(data = mpg) +
+   geom_point(mapping = aes(x = displ, y = hwy, shape = cty)) 
 ```
 
 
 5. Ką daro estetikos elementas `stroke`? Su kuriomis formomis jis veikia? (Užuomina: naudokite `geom_point`).
 
 ```{r}
+?.stroke
+ ggplot(data = mpg) +
+   geom_point(mapping = aes(x = displ, y = hwy, stroke = cty)) 
 
 ```
 
@@ -106,27 +136,39 @@ ggplot(data = mpg) +
 6. Kas nutinka, jei naudojate kelias skales (pvz., `color`, `size`) su keliais skirtingais kintamaisiais?
 
 ```{r}
-
+ ggplot(data = mpg) +
+   geom_point(mapping = aes(x = displ, y = hwy, color = class, size = cty)) 
 ```
 
 7. Kas nutinka, jei to paties kintamojo reikšmes atidedate keliose skirtingose skalėse (tarkime, `color` ir `shape`)?
 
 ```{r}
-
+ ggplot(data = mpg) +
+   geom_point(mapping = aes(x = displ, y = hwy, color= class, shape = class)) 
 ```
 
 8. Kas nutinka, jei su tam tikra skale susiejate ne konkretaus kintamojo pavadinimą (pvz., `aes(colour = displ)`), o kokį nors veiksmą su tuo kintamuoju, tarkime `aes(colour = displ < 5)`?
 
 ```{r}
-
+ ggplot(data = mpg) +
+   geom_point(mapping = aes(x=hwy, y=cty, colour = as.factor(displ))) 
 ```
 
-9. Nubraižykite grafiką ir jame rankiniu būdu parinkite spakvas naudodami:
+9. Nubraižykite grafiką ir jame rankiniu būdu parinkite spalvas naudodami:
     * spalvų pavadinimus (rašyti kabtėse);
     * šešioliktainius kodus (rašyti kabutėse);
     * spalvų numerius tarp 1 ir 8, be kabučių.
     
 ```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), color = "blue")
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), color = "#80ffd4")
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), color = 6)
+
 
 ```
     
